@@ -9,13 +9,14 @@
 </head>
 <body>
 <ol>
-				<c:forEach var="result" items="${resultList2}" varStatus="stat">
-					<li><span style="font-weight:bold;">${result.formula}${result.flag}</span></li><br>
-					<c:if test="${stat.last}">正确率为：${result.correct}<br><br><br>
-					<a href="ReturnFirstServlet">返回首页</a>
-					</c:if>
-				</c:forEach>
-				
-			</ol>	
+		<c:forEach var="result" items="${resultList2}" varStatus="stat">
+			<li><span style="font-weight:bold;">${result.formula}${result.flag}</span></li><br>
+			<c:if test="${stat.last}">正确率为：${result.correct}<br><br><br>
+			<a href="ReturnFirstServlet">返回首页</a>
+			</c:if>
+		</c:forEach>
+</ol>	
+
+
 </body>
 </html>

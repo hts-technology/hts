@@ -3,6 +3,7 @@ package com.hts.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hts.entity.CalculationResult;
+import com.hts.entity.TimerReturn;
 import com.hts.test.Test;
 
 
@@ -40,7 +42,7 @@ public class GetResultServlet extends HttpServlet {
 				int count =Integer.parseInt(request.getParameter("count"));
 				List<CalculationResult>list=Test.getCalculationResultList(count);		
 				request.getSession().setAttribute("resultList", list);
-				request.getRequestDispatcher("show.jsp").forward(request, response);
+				request.getRequestDispatcher("show2.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				request.setAttribute("mess", "false");
 				request.getSession().removeAttribute("resultList");

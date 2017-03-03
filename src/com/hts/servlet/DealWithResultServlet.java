@@ -1,6 +1,7 @@
 package com.hts.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.hts.entity.CalculationResult;
+import com.hts.entity.TimerReturn;
 
 /**
  * Servlet implementation class DealWithResult
@@ -32,7 +34,13 @@ public class DealWithResultServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String []answer=request.getParameterValues("answer");
+		String time=request.getParameter("time");
+		List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
+		if(timeList==null){timeList=new ArrayList<>();}
 		List<CalculationResult>list=(List<CalculationResult>) request.getSession().getAttribute("resultList");
+		TimerReturn timeReturn=new TimerReturn("完成"+list.size()+"题所用的时间为：", time);
+		timeList.add(timeReturn);
+		request.getSession().setAttribute("timeList", timeList);
 		int count =0;
 		for(int i=0;i<answer.length;i++){
 			if(list.get(i).getResult().equals(answer[i].trim())){

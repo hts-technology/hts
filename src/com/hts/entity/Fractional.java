@@ -151,7 +151,7 @@ public class Fractional {
 			if(Util.gcd(f.getMolecular(), f.getDenominator())*(f.getMolecular()/f.getDenominator())==f.getMolecular()){
 				suf=f.getMolecular()/f.getDenominator()+"";
 			}
-			cr.setFormula(pre+"¡Â"+suf+"=");
+			cr.setFormula(pre+"Ã·"+suf+"=");
 			int temp=f.molecular;
 			f.molecular=f.denominator;
 			f.denominator=temp;
