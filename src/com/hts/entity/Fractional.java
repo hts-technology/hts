@@ -47,6 +47,10 @@ public class Fractional {
 				molecularSum=molecularSum/k;
 				denominatorMul=denominatorMul/k;
 			}
+			if(molecularSum==0){				
+				cr.setResult("0");
+				return cr;
+			}
 			if(molecularSum==denominatorMul){				
 				cr.setResult("1");
 				return cr;
@@ -92,6 +96,10 @@ public class Fractional {
 					cr.setResult("-1");
 						return cr;
 				}			
+				if(denominatorMul==1){
+					cr.setResult("-"+molecularSub);
+					return cr;
+				}
 				cr.setResult("-"+molecularSub+"/"+denominatorMul);
 				return cr;
 			}
@@ -179,7 +187,7 @@ public class Fractional {
 		}
 		public static void main(String[] args) {
 			Fractional f=new Fractional(0, 1);
-			Fractional f1=new Fractional(5, 10);
-			System.out.println(f.getDivResult(f1));
+			Fractional f1=new Fractional(0, 2);
+			System.out.println(f.getAddResult(f1));
 		}
 }
