@@ -40,11 +40,11 @@ public class DealWithResultServlet extends HttpServlet {
 		int count =0;
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).getResult().equals(answer[i].trim())){
-				list.get(i).setFlag(answer[i]+"正确");
+				list.get(i).setFlag(answer[i]+"姝ｇ‘");
 				count++;
 			}
 			else{
-				list.get(i).setFlag(answer[i]+"错误   正确答案为："+list.get(i).getResult());
+				list.get(i).setFlag(answer[i]+"閿欒   姝ｇ‘绛旀涓猴細"+list.get(i).getResult());
 			}
 		}	
 		for(int i=0;i<list.size();i++){
@@ -53,7 +53,7 @@ public class DealWithResultServlet extends HttpServlet {
 		if(count/list.size()==1){
 			List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
 			if(timeList==null){timeList=new ArrayList<>();}
-			TimerReturn timeReturn=new TimerReturn("完成"+list.size()+"题所用的时间为：",time);
+			TimerReturn timeReturn=new TimerReturn("瀹屾垚"+list.size()+"棰樻墍鐢ㄧ殑鏃堕棿涓猴細",time);
 			timeList.add(timeReturn);
 			request.getSession().setAttribute("timeList", timeList);
 		}
