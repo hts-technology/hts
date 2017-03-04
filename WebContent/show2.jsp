@@ -16,17 +16,18 @@
 		<form action="GetResultServlet">
 		请输入需要的题数：<input type="text" name="count" id="count"  style="width:50px;">&nbsp;&nbsp;&nbsp;
 									<input type="submit"  value="生成">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									做题计时开始：<input  type="text"  name="time"  id="input"  style="width:60px;">	
+									做题计时开始：<input  type="text"   id="input"  style="width:60px;">	
 		</form>
 		
 	<div >
-		<form action="DealWithResultServlet" >
+		<form action="DealWithResultServlet"  method="post">
+					<input type="hidden"  id="time" name="time">	
 			<ol>
 				<c:forEach var="result" items="${resultList}" varStatus="stat">
-					<li><span style="font-weight:bold;">${result.formula}<input type="text" name="answer" style="width:50px;" ></span></li><br>
+					<li><span style="font-weight:bold;">${result.formula}<input type="text" name="answer"  style="width:50px;" id="answer"></span></li><br>
 					<c:if test="${stat.last}"><input type="submit"  id="submit"  value="提交"> </c:if>
 				</c:forEach>
-			</ol>			
+			</ol>						
 		</form>
 		</div>
 	<div class="div2">
@@ -51,24 +52,8 @@
             date.setSeconds(sec);
             var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
             document.getElementById("input").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s);
+            document.getElementById("time").value=two_char(h) + ":" + two_char(m) + ":" + two_char(s);
         }, 1000);      
     }
-</script>
-
-<script type="text/javascript">
-$("#submit").click(function(){
-	var time1=$("#input").val();
-	$.ajax({
- 		type:"post", 
- 		url : "DealWithResultServlet",
- 		data : {
- 			time : time1
- 		},
- 		success : function(result) {
- 		}
- 		});
-	
-})
-
 </script>
 </html>

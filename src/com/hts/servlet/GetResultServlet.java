@@ -42,7 +42,8 @@ public class GetResultServlet extends HttpServlet {
 				int count =Integer.parseInt(request.getParameter("count"));
 				List<CalculationResult>list=Test.getCalculationResultList(count);		
 				request.getSession().setAttribute("resultList", list);
-				request.getRequestDispatcher("show2.jsp").forward(request, response);
+				response.sendRedirect("show2.jsp");
+				//request.getRequestDispatcher("show2.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
 				request.setAttribute("mess", "false");
 				request.getSession().removeAttribute("resultList");

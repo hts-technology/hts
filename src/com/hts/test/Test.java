@@ -12,10 +12,10 @@ public class Test {
 		for(int i=0;i<count;i++){
 			Fractional f=new Fractional();
 			Fractional f1=new Fractional();
-			int x=(int)(Math.random()*100);
-			int y=1+(int)(Math.random()*100);
-			int m=(int)(Math.random()*100);
-			int n=1+(int)(Math.random()*100);
+			int x=(int)(Math.random()*10);
+			int y=1+(int)(Math.random()*10);
+			int m=(int)(Math.random()*10);
+			int n=1+(int)(Math.random()*10);
 			char randowOp=op[(int)(Math.random()*4)];
 			f.setMolecular(x);
 			f.setDenominator(y);

@@ -34,25 +34,28 @@ public class DealWithResultServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String []answer=request.getParameterValues("answer");
-		String time=request.getParameter("time");
-		List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
-		if(timeList==null){timeList=new ArrayList<>();}
-		List<CalculationResult>list=(List<CalculationResult>) request.getSession().getAttribute("resultList");
-		TimerReturn timeReturn=new TimerReturn("瀹屾垚"+list.size()+"棰樻墍鐢ㄧ殑鏃堕棿涓猴細", time);
-		timeList.add(timeReturn);
-		request.getSession().setAttribute("timeList", timeList);
+		String time=(String)request.getParameter("time");			
+		@SuppressWarnings("unchecked")
+		List<CalculationResult> list=(List<CalculationResult>) request.getSession().getAttribute("resultList");			
 		int count =0;
-		for(int i=0;i<answer.length;i++){
+		for(int i=0;i<list.size();i++){
 			if(list.get(i).getResult().equals(answer[i].trim())){
-				list.get(i).setFlag(answer[i]+"姝ｇ‘");
+				list.get(i).setFlag(answer[i]+"正确");
 				count++;
 			}
 			else{
-				list.get(i).setFlag(answer[i]+"閿欒   姝ｇ‘绛旀涓猴細"+list.get(i).getResult());
+				list.get(i).setFlag(answer[i]+"错误   正确答案为："+list.get(i).getResult());
 			}
-		}
+		}	
 		for(int i=0;i<list.size();i++){
 			list.get(i).setCorrect(count*1.0/list.size()*100+"%");
+		}
+		if(count/list.size()==1){
+			List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
+			if(timeList==null){timeList=new ArrayList<>();}
+			TimerReturn timeReturn=new TimerReturn("完成"+list.size()+"题所用的时间为：",time);
+			timeList.add(timeReturn);
+			request.getSession().setAttribute("timeList", timeList);
 		}
 		request.setAttribute("resultList2", list);
 		request.getRequestDispatcher("showResult.jsp").forward(request, response);

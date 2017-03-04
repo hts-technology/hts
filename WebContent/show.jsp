@@ -9,18 +9,19 @@
 <c:if test="${ mess.equals('false')}"><script type="text/javascript"> alert("请输入数字");</script></c:if>
 </head>
 <body>
-		<form action="GetResultServlet">
+		<form action="GetResultServlet"  method="post">
 		请输入需要的题数：<input type="text" name="count" id="count"  style="width:50px;">&nbsp;&nbsp;&nbsp;
-									<input type="submit" id="submit" value="生成">
+									<input type="submit" value="生成">
 		</form>
 				<div >
-		<form action="DealWithResultServlet" >
+		<form action="DealWithResultServlet" method ="post">
 			<ol>
 				<c:forEach var="result" items="${resultList}" varStatus="stat">
 					<li><span style="font-weight:bold;">${result.formula}<input type="text" name="answer" style="width:50px;"></span></li><br>
 					<c:if test="${stat.last}"><input type="submit"  value="提交"> </c:if>
 				</c:forEach>
-			</ol>			
+			</ol>
+		
 		</form>
 		</div>
 </body>
