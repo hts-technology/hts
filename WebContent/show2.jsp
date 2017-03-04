@@ -10,13 +10,12 @@
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jQuery.js"></script>
-<c:if test="${ mess.equals('false')}"><script type="text/javascript"> alert("请输入数字");</script></c:if>
 </head>
 <body onload="time_fun()">
 		<form action="GetResultServlet">
 		请输入需要的题数：<input type="text" name="count" id="count"  style="width:50px;">&nbsp;&nbsp;&nbsp;
 									<input type="submit"  value="生成">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									做题计时开始：<input  type="text"   id="input"  style="width:60px;">	
+									做题计时开始：<input  type="text"   id="timeShow"  style="width:60px;">	
 		</form>
 		
 	<div >
@@ -51,7 +50,7 @@
             var date = new Date(0, 0)
             date.setSeconds(sec);
             var h = date.getHours(), m = date.getMinutes(), s = date.getSeconds();
-            document.getElementById("input").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s);
+            document.getElementById("timeShow").innerText = two_char(h) + ":" + two_char(m) + ":" + two_char(s);
             document.getElementById("time").value=two_char(h) + ":" + two_char(m) + ":" + two_char(s);
         }, 1000);      
     }

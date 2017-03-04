@@ -39,9 +39,6 @@ public class CalculationResult {
 			
 		}
 		
-//		public String toString() {
-//			return formula +  flag ;
-//		}
 		@Override
 		public String toString() {
 			return formula +  result ;

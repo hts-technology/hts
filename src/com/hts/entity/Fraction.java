@@ -2,11 +2,11 @@ package com.hts.entity;
 
 import com.hts.util.Util;
 
-public class Fractional {
+public class Fraction {
 		private int molecular;
 		private int denominator;
 			
-		public Fractional(int molecular, int denominator) {
+		public Fraction(int molecular, int denominator) {
 			super();
 			this.molecular = molecular;
 			this.denominator = denominator;
@@ -23,11 +23,11 @@ public class Fractional {
 		public void setDenominator(int denominator) {
 			this.denominator = denominator;
 		}
-		public Fractional() {
+		public Fraction() {
 			
 		}
 		
-		public CalculationResult getAddResult(Fractional f){
+		public CalculationResult getAddResult(Fraction f){
 			CalculationResult cr=new CalculationResult();
 			String pre=molecular+"/"+denominator;
 			String suf=f.getMolecular()+"/"+f.getDenominator();
@@ -62,7 +62,7 @@ public class Fractional {
 			cr.setResult(molecularSum+"/"+denominatorMul);
 			return cr;
 		}
-		public CalculationResult getSubResult(Fractional f){
+		public CalculationResult getSubResult(Fraction f){
 			CalculationResult cr=new CalculationResult();
 			String pre=molecular+"/"+denominator;
 			String suf=f.getMolecular()+"/"+f.getDenominator();
@@ -116,7 +116,7 @@ public class Fractional {
 			cr.setResult(molecularSub+"/"+denominatorMul);
 			return cr;
 		}
-		public CalculationResult getMulResult(Fractional f){
+		public CalculationResult getMulResult(Fraction f){
 			CalculationResult cr=new CalculationResult();
 			String pre=molecular+"/"+denominator;
 			String suf=f.getMolecular()+"/"+f.getDenominator();
@@ -149,7 +149,7 @@ public class Fractional {
 			cr.setResult(molecularMul+"/"+denominatorMul);
 			return cr;
 		}
-		public CalculationResult getDivResult(Fractional f){
+		public CalculationResult getDivResult(Fraction f){
 			CalculationResult cr=new CalculationResult();
 			String pre=molecular+"/"+denominator;
 			String suf=f.getMolecular()+"/"+f.getDenominator();
@@ -186,8 +186,8 @@ public class Fractional {
 			return cr;
 		}
 		public static void main(String[] args) {
-			Fractional f=new Fractional(0, 1);
-			Fractional f1=new Fractional(0, 2);
+			Fraction f=new Fraction(0, 1);
+			Fraction f1=new Fraction(0, 2);
 			System.out.println(f.getAddResult(f1));
 		}
 }

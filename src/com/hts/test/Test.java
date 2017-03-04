@@ -3,15 +3,15 @@ package com.hts.test;
 import java.util.ArrayList;
 import java.util.List;
 import com.hts.entity.CalculationResult;
-import com.hts.entity.Fractional;
+import com.hts.entity.Fraction;
 public class Test {
 
 	public static List<CalculationResult> getCalculationResultList(int count){
 		List<CalculationResult> list=new ArrayList<>();
 		char[] op={'+','-','*','/'};
 		for(int i=0;i<count;i++){
-			Fractional f=new Fractional();
-			Fractional f1=new Fractional();
+			Fraction f=new Fraction();
+			Fraction f1=new Fraction();
 			int x=(int)(Math.random()*10);
 			int y=1+(int)(Math.random()*10);
 			int m=(int)(Math.random()*10);
