@@ -5,25 +5,64 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="js/jQuery.js"></script>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="js/jquery-3.1.1.min.js"></script>
+<style type="text/css">
+div{
+Float:left;
+}
+</style>
 <c:if test="${ mess.equals('false')}"><script type="text/javascript"> alert("请输入数字");</script></c:if>
 </head>
 <body>
+<div>
 		<form action="GetResultServlet"  method="post">
-		请输入需要的题数：<input type="text" name="count" id="count"  style="width:50px;">&nbsp;&nbsp;&nbsp;
-									<input type="submit" value="生成">
+		<div  id="firstPage1" ></div> <input type="text" name="count" id="count"  style="width:50px;">&nbsp;&nbsp;&nbsp;
+		<input type="submit"  id="submit"  value="生成">
 		</form>
-				<div >
-		<form action="DealWithResultServlet" method ="post">
-			<ol>
-				<c:forEach var="result" items="${resultList}" varStatus="stat">
-					<li><span style="font-weight:bold;">${result.formula}<input type="text" name="answer" style="width:50px;"></span></li><br>
-					<c:if test="${stat.last}"><input type="submit"  value="提交"> </c:if>
-				</c:forEach>
-			</ol>
-		
-		</form>
-		</div>
+</div>	
+<div>
+<form action="">
+		<input type="radio"  name="lanaguage"  id="radio" value="simpleChinese" >简体中文
+		<input type="radio"  name="lanaguage"  id="radio" value="traditionalChinese">繁体中文
+		<input type="radio"  name="lanaguage"   id="radio" value="English">English
+</form>
+</div>
 </body>
-
+<script type="text/javascript">
+$(function(){
+	var lanaguage1=$('input:radio:checked').val();
+	$.ajax({
+		dataType:"json",
+ 		type:"post", 
+ 		url : "LanguageServlet?page=firstPage",
+ 		success : function(result) {
+ 			$("#firstPage1").html(result.firstPage1);
+ 			$("#firstPage2").val()=result.firstPage2;
+ 		}
+ 		}); 
+ });
+</script>
+<script type="text/javascript">
+$(":radio").change(function(){
+	var lanaguage1=$('input:radio:checked').val();
+	$.ajax({
+		dataType:"json",
+ 		type:"post", 
+ 		url : "LanguageSelectServlet",
+ 		data : {
+ 			lanaguage : lanaguage1
+ 		}
+ 	});
+	$.ajax({
+		dataType:"json",
+ 		type:"post", 
+ 		url : "LanguageServlet?page=firstPage",
+ 		success : function(result) {
+ 			$("#firstPage1").html(result.firstPage1);
+ 			$("#submit").val(result.firstPage2);
+ 		}
+ 	});
+ })
+</script>
 </html>

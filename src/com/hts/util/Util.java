@@ -17,6 +17,9 @@ public class Util {
         return s;           
     }  
 	public static void main(String[] args) {
-		System.out.println(gcd(-8,6));
+		String str1="abc";
+		String str2="abc";
+		System.out.println(str1.getBytes());
+		System.out.println(str2.getBytes());
 	}
 }
