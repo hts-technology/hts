@@ -12,12 +12,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.hts.entity.CalculationResult;
-import com.hts.entity.Fraction;
 
 
 public class QuestionSqlOperation {
 	private static String driverName = "com.mysql.jdbc.Driver";// jdbc4.0以后不需要
-	private static String url = "jdbc:mysql://115.28.11.59:3306/questionBand";
+	private static String url = "jdbc:mysql://localhost:3306/questionBand";
 	private static String userName = "root";
 	private static String password = "1107604329";
 	public static void registerDriver() {
@@ -76,19 +75,21 @@ public class QuestionSqlOperation {
 	public static void writerToDB(){
 		Connection conn = null;
 		Statement stat = null;
-		ResultSet rs=null;
 		try {
 			conn = QuestionSqlOperation.getConnection();
 			stat = conn.createStatement();
-			Scanner sc=new Scanner(new File("E://questionBandcopy.txt"));
+			Scanner sc=new Scanner(new File("E://questionBand.txt"));
 			while(sc.hasNextLine()){
 				String temp[]=sc.nextLine().split("=");
+				System.out.println(temp[0]+temp[1]);
 				 String sql="INSERT INTO QB values('"+temp[0]+"=','"+temp[1]+"')";
 				 stat.execute(sql);
 			}
+			sc.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
+			
 			closeConnection(conn);
 		}
 	}

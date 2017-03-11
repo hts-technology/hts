@@ -41,7 +41,7 @@ public class GetResultServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		try {
 				int count =Integer.parseInt(request.getParameter("count"));
-				List<CalculationResult>list=Test.getCalculationResultList(count);		
+				List<CalculationResult>list=QuestionSqlOperation.getCalculationResultList(count);		
 				request.getSession().setAttribute("resultList", list);
 				response.sendRedirect("show2.jsp");
 				//request.getRequestDispatcher("show2.jsp").forward(request, response);
