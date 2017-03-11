@@ -1,5 +1,11 @@
 package com.hts.util;
 
+import java.util.List;
+import java.util.Map;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 public class Util {
 	
 	public static int gcd(int m,int n){        
@@ -16,6 +22,22 @@ public class Util {
         }  
         return s;           
     }  
+	public static JSONArray toJsonArray( List<Map<String, Object>>data){
+		JSONArray array =new JSONArray();
+		for(Map<String,Object>rowItem:data){
+			JSONObject json=new JSONObject();
+			try{
+				for(Map.Entry<String, Object>entry:rowItem.entrySet()){
+					json.put(entry.getKey(), entry.getValue());
+				}
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			array.add(json);
+		}
+		
+		return array;
+	}
 	public static void main(String[] args) {
 		String str1="abc";
 		String str2="abc";
