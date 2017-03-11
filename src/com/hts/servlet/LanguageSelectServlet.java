@@ -27,7 +27,6 @@ public class LanguageSelectServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String lanaguage=request.getParameter("lanaguage");
-		System.out.println("成功");
 		request.getSession().setAttribute("lanaguage", lanaguage);
 	}
 

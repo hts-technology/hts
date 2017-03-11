@@ -16,29 +16,29 @@ import com.hts.entity.Fraction;
 
 
 public class QuestionSqlOperation {
-	private static String driverName = "com.mysql.jdbc.Driver";// jdbc4.0ÒÔºó²»ĞèÒª
+	private static String driverName = "com.mysql.jdbc.Driver";// jdbc4.0ä»¥åä¸éœ€è¦
 	private static String url = "jdbc:mysql://115.28.11.59:3306/questionBand";
 	private static String userName = "root";
 	private static String password = "1107604329";
 	public static void registerDriver() {
 		try {
-			Class.forName(driverName);// jdbc4.0ÒÔÇ°ĞèÒªÕâ¾ä½øĞĞÇı¶¯×¢²á
+			Class.forName(driverName);// jdbc4.0ä»¥å‰éœ€è¦è¿™å¥è¿›è¡Œé©±åŠ¨æ³¨å†Œ
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
-			System.out.println("ÕÒ²»µ½Çı¶¯");
+			System.out.println("æ‰¾ä¸åˆ°é©±åŠ¨");
 		}
 	}
 	public static Connection getConnection() throws SQLException {
 		Connection conn = null;
 		registerDriver();
-		System.out.println("ÕıÔÚÁ¬½ÓÊı¾İ¿â...");
+		System.out.println("æ­£åœ¨è¿æ¥æ•°æ®åº“...");
 		conn = DriverManager.getConnection(url, userName, password);
-		System.out.println("Êı¾İ¿âÒÑÁ¬½Ó!");
+		System.out.println("æ•°æ®åº“å·²è¿æ¥!");
 		return conn;
 
 	}
 	public static void closeConnection(Connection conn) {
-		System.out.println("ÕıÔÚÊÍ·ÅËùÓĞ×ÊÔ´...");
+		System.out.println("æ­£åœ¨é‡Šæ”¾æ‰€æœ‰èµ„æº...");
 		
 			if (conn != null) {
 				try {
@@ -52,7 +52,7 @@ public class QuestionSqlOperation {
 	}
 	
 	/*
-	 * ÊÍ·ÅËùÓĞ×ÊÔ´
+	 * é‡Šæ”¾æ‰€æœ‰èµ„æº
 	 */
 	public static void realeaseAll(ResultSet rs,Statement st,Connection conn){
 		if(rs!=null){
