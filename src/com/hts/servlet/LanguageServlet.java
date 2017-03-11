@@ -113,6 +113,8 @@ public class LanguageServlet extends HttpServlet {
 		String secondPage4=prop.getProperty("secondPage4");
 		String secondPage5=prop.getProperty("secondPage5");
 		String secondPage6=prop.getProperty("secondPage6");
+		String secondPage7=prop.getProperty("secondPage7");
+		String secondPage8=prop.getProperty("secondPage8");
 		Map<String,String>map=new HashMap<>();
 		map.put("secondPage1", secondPage1);
 		map.put("secondPage2", secondPage2);
@@ -120,6 +122,8 @@ public class LanguageServlet extends HttpServlet {
 		map.put("secondPage4", secondPage4);
 		map.put("secondPage5", secondPage5);
 		map.put("secondPage6", secondPage6);
+		map.put("secondPage7", secondPage7);
+		map.put("secondPage8", secondPage8);
 		String json=JSON.toJSONString(map);
 		pw.print(json);
 	}

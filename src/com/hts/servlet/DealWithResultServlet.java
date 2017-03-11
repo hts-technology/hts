@@ -72,15 +72,15 @@ public class DealWithResultServlet extends HttpServlet {
 		for(int i=0;i<list.size();i++){
 			list.get(i).setCorrect(count*1.0/list.size()*100+"%");
 		}
-		if(count/list.size()==1){
+
 			@SuppressWarnings("unchecked")
 			List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
 			if(timeList==null){timeList=new ArrayList<>();}
-			TimerReturn timeReturn=new TimerReturn(list.size()+"",time);
+			TimerReturn timeReturn=new TimerReturn(list.size()+"",time,list.size()-count+"",count*1.0/list.size()*100+"%");
 			timeList.add(timeReturn);
 			request.getSession().setAttribute("flag", "true");
 			request.getSession().setAttribute("timeList", timeList);
-		}
+		
 		request.setAttribute("resultList2", list);
 		request.getRequestDispatcher("showResult.jsp").forward(request, response);
 	}

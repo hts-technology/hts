@@ -39,6 +39,8 @@
 			<tr>
 					<th></th>
 					<th></th>
+					<th></th>
+					<th></th>
 			</tr>
 		</c:if>	
 			<c:forEach var="Result" items="${timeList}">
@@ -46,6 +48,8 @@
 				<tr>
 						<td>${Result.message}</td>
 						<td>${Result.time}</td>
+						<td>${Result.errorCount}</td>
+						<td>${Result.correctRate}</td>
 				</tr>
 				</c:if>
 			</c:forEach>
@@ -86,6 +90,8 @@ $(function(){
  			$("#submit2").val(result.secondPage4);
  			$("table tr th:eq(0)").html(result.secondPage5);
  			$("table tr th:eq(1)").html(result.secondPage6);
+ 			$("table tr th:eq(2)").html(result.secondPage7);
+ 			$("table tr th:eq(3)").html(result.secondPage8);
  		}
  		}); 
  });
