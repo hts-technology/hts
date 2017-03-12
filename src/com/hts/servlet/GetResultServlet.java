@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,25 @@ public class GetResultServlet extends HttpServlet {
 				int count =Integer.parseInt(request.getParameter("count"));
 				List<CalculationResult>list=QuestionSqlOperation.getCalculationResultList(count);		
 				request.getSession().setAttribute("resultList", list);
+				List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
+				Cookie [] c=request.getCookies();
+				if(timeList==null){
+					timeList=new ArrayList<>();				
+					for(int i=0;i<c.length;i++){
+						if(c[i].getName().equals("timeList")){
+							request.getSession().setAttribute("flag", "true");
+							String message=c[i].getValue();
+							System.out.println(message);
+							String [] totalTimeList=message.split("M");
+							for(int j=0;j<totalTimeList.length;j++){
+								String [] perTimeList=totalTimeList[j].split(",");
+								TimerReturn timeReturn=new TimerReturn(perTimeList[0]+"",perTimeList[1],perTimeList[2],perTimeList[3]);
+								timeList.add(timeReturn);
+							}
+						}
+					}
+				}
+				request.getSession().setAttribute("timeList", timeList);
 				response.sendRedirect("show2.jsp");
 				//request.getRequestDispatcher("show2.jsp").forward(request, response);
 			} catch (NumberFormatException e) {
