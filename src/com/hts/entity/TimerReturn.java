@@ -45,5 +45,4 @@ public class TimerReturn {
 		public String toString() {
 			return "TimerReturn [message=" + message + ", time=" + time + "]";
 		}
-		
 }

@@ -56,7 +56,7 @@ public class DealWithResultServlet extends HttpServlet {
 		String message2=prop.getProperty("answer2");
 		request.setCharacterEncoding("utf-8");
 		String []answer=request.getParameterValues("answer");
-		String time=(String)request.getParameter("time");			
+	
 		@SuppressWarnings("unchecked")
 		List<CalculationResult> list=(List<CalculationResult>) request.getSession().getAttribute("resultList");			
 		int count =0;
@@ -74,6 +74,7 @@ public class DealWithResultServlet extends HttpServlet {
 		}
 
 			@SuppressWarnings("unchecked")
+			String time=(String)request.getParameter("time");		
 			List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
 			if(timeList==null){timeList=new ArrayList<>();}
 			TimerReturn timeReturn=new TimerReturn(list.size()+"",time,list.size()-count+"",count*1.0/list.size()*100+"%");
