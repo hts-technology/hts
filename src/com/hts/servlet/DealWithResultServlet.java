@@ -8,6 +8,7 @@ import java.util.Properties;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -56,7 +57,7 @@ public class DealWithResultServlet extends HttpServlet {
 		String message2=prop.getProperty("answer2");
 		request.setCharacterEncoding("utf-8");
 		String []answer=request.getParameterValues("answer");
-		String time=(String)request.getParameter("time");			
+		String time=(String)request.getParameter("time");		
 		@SuppressWarnings("unchecked")
 		List<CalculationResult> list=(List<CalculationResult>) request.getSession().getAttribute("resultList");			
 		int count =0;
@@ -74,8 +75,40 @@ public class DealWithResultServlet extends HttpServlet {
 		}
 
 			@SuppressWarnings("unchecked")
+
 			List<TimerReturn>timeList=(List<TimerReturn>) request.getSession().getAttribute("timeList");
-			if(timeList==null){timeList=new ArrayList<>();}
+			Cookie [] c=request.getCookies();
+			if(timeList==null){
+				timeList=new ArrayList<>();				
+				for(int i=0;i<c.length;i++){
+					if(c[i].getName().equals("timeList")){
+						String message=c[i].getValue();
+						System.out.println(message);
+						String [] totalTimeList=message.split("M");
+						for(int j=0;j<totalTimeList.length;j++){
+							String [] perTimeList=totalTimeList[j].split(",");
+							TimerReturn timeReturn=new TimerReturn(perTimeList[0]+"",perTimeList[1],perTimeList[2],perTimeList[3]);
+							timeList.add(timeReturn);
+						}
+					}
+				}
+			}
+			String perTimeList=list.size()+","+time+","+(list.size()-count)+","+count*1.0/list.size()*100+"%";
+			boolean flag=true;
+			for(int i=0;i<c.length;i++){
+				if(c[i].getName().equals("timeList")){
+					String totalTimeList=c[i].getValue()+"M"+perTimeList;
+					Cookie c1=new Cookie("timeList", totalTimeList);
+					c1.setMaxAge(3600*24*30*12);
+					response.addCookie(c1);
+					flag=false;
+				}
+			}
+			if(flag==true){
+				Cookie c1=new Cookie("timeList", perTimeList);
+				c1.setMaxAge(3600*24*30*12);
+				response.addCookie(c1);
+			}
 			TimerReturn timeReturn=new TimerReturn(list.size()+"",time,list.size()-count+"",count*1.0/list.size()*100+"%");
 			timeList.add(timeReturn);
 			request.getSession().setAttribute("flag", "true");

@@ -6,7 +6,7 @@
 <head>
 <style type="text/css">
 #div1{float:left}
-.div2{position:absolute;left:300px;top:100px}
+.div2{position:absolute;left:400px;top:100px}
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="js/jquery-3.1.1.js"></script>
@@ -96,25 +96,5 @@ $(function(){
  		}); 
  });
 </script>
-<script type="text/javascript">
-$(":radio").change(function(){
-	var lanaguage1=$('input:radio:checked').val();
-	$.ajax({
-		dataType:"json",
- 		type:"post", 
- 		url : "LanguageServlet?page=secondPage",
- 		data : {
- 			lanaguage : lanaguage1
- 		},
- 		success : function(result) {
- 			$("#secondPage1").html(result.secondPage1);
- 			$("#submit").val(result.secondPage2);
- 			$("#secondPage3").html(result.secondPage3);
- 			$("#submit2").val(result.secondPage4);
- 			$("table tr th:eq(0)").html(result.secondPage5);
- 			$("table tr th:eq(1)").html(result.secondPage6);
- 		}
- 	});
- })
-</script>
+
 </html>
