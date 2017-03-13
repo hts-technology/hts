@@ -40,7 +40,7 @@ public class Test {
 	public static void main(String[] args) throws IOException {
 		Properties prop = new Properties(); 
 		InputStream  inputStream= Test.class.getClassLoader().getResourceAsStream("simpleChinese.properties");
-		prop.load(inputStream);     ///加载属性列表
+		prop.load(inputStream);    
 		String firstPage1=prop.getProperty("firstPage1");
 		String firstPage2=prop.getProperty("firstPage2");
 		System.out.println(firstPage1+firstPage2);
